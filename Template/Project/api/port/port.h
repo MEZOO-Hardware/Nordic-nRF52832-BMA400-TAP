@@ -2,6 +2,9 @@
 // Created by joey on 2024-06-18.
 //
 
+#ifndef NORDIC_NRF52832_TEMPLATE_PORT_H
+#define NORDIC_NRF52832_TEMPLATE_PORT_H
+
 #include "../sys/headerfile.h"
 
 typedef enum
@@ -40,7 +43,8 @@ typedef enum
     PORT31_MOSI
 } PORT_NRF52832;
 
-typedef enum {
+typedef enum
+{
     Port_SCLK      = PORT30_SCLK,
     Port_MISO      = PORT29_MISO,
     Port_MOSI      = PORT31_MOSI,
@@ -52,6 +56,10 @@ typedef enum {
 
 void initPortOutSet(uint8_t portNumber);
 void initPortOutClear(uint8_t portNumber);
+void initPortToggle(uint8_t portNumber);
 void initNRF52Port();
+void initComoPort();
 void initPort();
 void initPowerHold();
+
+#endif //NORDIC_NRF52832_TEMPLATE_PORT_H

@@ -1,8 +1,12 @@
 //
-// Created by joey on 2024-06-18.
+// Created by joey on 2024-07-03.
 //
 
 #include "bma400.h"
+
+/****************************/
+/******* write & read *******/
+/****************************/
 
 static volatile bool m_xfer_done = false;
 
@@ -16,11 +20,11 @@ void writeBMA400(uint8_t *w_data, uint32_t w_length)
 		writeI2C(BMA400_ADDR, w_data, w_length);
 }
 
-/********************/
-/****** config ******/
-/********************/
+/****************************/
+/********** config **********/
+/****************************/
 
-void setSoftReset()
+void setSoftResetBMA400()
 {
 		uint8_t config[2];
 		config[0] = BMA400_CommandReg_ADDR;
@@ -55,10 +59,10 @@ void setAccConfig1()
 		writeBMA400(&config[0], sizeof(config));
 }
 
-void setINTConfig0()
+void setIntConfig0()
 {
 		uint8_t config[2];
-		config[0] = BMA400_INTConfig0_ADDR;
+		config[0] = BMA400_IntConfig0_ADDR;
 		config[1] = (0x80);
 
 		writeBMA400(&config[0], sizeof(config));
@@ -67,15 +71,15 @@ void setINTConfig0()
 void setInt1Map()
 {
 		uint8_t config[2];
-		config[0] = BMA400_INT1MAP_ADDR;
+		config[0] = BMA400_Int1Map_ADDR;
 		config[1] = (0x80);
 
 		writeBMA400(&config[0], sizeof(config));
 }
 
-/********************/
-/****** printer *****/
-/********************/
+/****************************/
+/********* printer **********/
+/****************************/
 
 void printerConectCheckBMA400()
 {
@@ -97,51 +101,51 @@ void printerConectCheckBMA400()
     }
 }
 
-/********************/
-/******* read *******/
-/********************/
+/****************************/
+/******** data read *********/
+/****************************/
 
-static uint8_t AccXYZRaw[6];
+static uint8_t accXYZRaw[6];
 
 void readAccXYZ()
 {
 		uint8_t wrData[1] = {BMA400_AccXLSB_ADDR};
 	
-    writeReadBMA400(wrData, sizeof(wrData), &AccXYZRaw[0], sizeof(AccXYZRaw));
+    writeReadBMA400(wrData, sizeof(wrData), &accXYZRaw[0], sizeof(accXYZRaw));
 }
 
-/********************/
-/***** converter ****/
-/********************/
+/****************************/
+/****** data converter ******/
+/****************************/
 
-static int16_t accXVal = 0;
-static int16_t accYVal = 0;
-static int16_t accZVal = 0;
+static int16_t accX = 0;
+static int16_t accY = 0;
+static int16_t accZ = 0;
 
 void convAccXYZ(void)
 {
-    accXVal = (int16_t)(((uint16_t)AccXYZRaw[1] << 8) | AccXYZRaw[0]);
-    accYVal = (int16_t)(((uint16_t)AccXYZRaw[3] << 8) | AccXYZRaw[2]);
-    accZVal = (int16_t)(((uint16_t)AccXYZRaw[5] << 8) | AccXYZRaw[4]);
+    accX = (int16_t)(((uint16_t)accXYZRaw[1] << 8) | accXYZRaw[0]);
+    accY = (int16_t)(((uint16_t)accXYZRaw[3] << 8) | accXYZRaw[2]);
+    accZ = (int16_t)(((uint16_t)accXYZRaw[5] << 8) | accXYZRaw[4]);
 
-    if(accXVal > 2047) accXVal = (accXVal - 4096);
-    if(accYVal > 2047) accYVal = (accYVal - 4096);
-    if(accZVal > 2047) accZVal = (accZVal - 4096);
+    if(accX > 2047) accX = (accX - 4096);
+    if(accY > 2047) accY = (accY - 4096);
+    if(accZ > 2047) accZ = (accZ - 4096);
 }
 
-/********************/
-/****** bma400 ******/
-/********************/
+/****************************/
+/********** bma400 **********/
+/****************************/
 
 void initBMA400()
 {
-    setSoftReset();
+    setSoftResetBMA400();
     nrf_delay_ms(2);
     setAccConfig0();
     nrf_delay_us(200);
     setAccConfig1();
     nrf_delay_us(200);
-    setINTConfig0();
+    setIntConfig0();
     nrf_delay_us(200);
     setInt1Map();
     nrf_delay_ms(2);
@@ -153,14 +157,8 @@ void BMA400()
 {
     readAccXYZ();
     convAccXYZ();
-//    saveBMA400(accXVal, accYVal, accZVal);
+		
+		NRF_LOG_INFO("X:%d Y:%d Z:%d", accX, accY, accZ);
+    NRF_LOG_FLUSH();
+//    saveBMA400(accX accY, accZ);
 }
-
-
-
-
-
-
-
-
-

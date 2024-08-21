@@ -14,11 +14,12 @@ void handerLowPowerConsumption()
 
 void initPeripherals()
 {
-		initNRF52Port();
+//		initNRF52Port();
+		initComoPort();
     initUART();
 		initSeggerRTT();
     initI2C();
-    initSPI();
+//    initSPI();
 		initADC();
 		initPinChangeInterrupt();
 	
@@ -29,25 +30,26 @@ void initPeripherals()
 
 void initSensors()
 {
-		nrf_delay_ms(50);
+		initBMA400();
     NRF_LOG_INFO("initSensors Completed");
     NRF_LOG_FLUSH();
 }
 
 int main()
 {
-//		initPowerHold();	
-		handerLowPowerConsumption();
+		initPowerHold();	
 		initPeripherals();
 		initSensors();
+		handerLowPowerConsumption();
 		initTimerInterrupt();
   
     while (true)
     {
-        for (int i = 0; i < LEDS_NUMBER; i++)
+        for (int i = 0; i < 2; i++)
         {
             bsp_board_led_invert(i);
             nrf_delay_ms(100);
         }
+				
     } // while
 } // main
