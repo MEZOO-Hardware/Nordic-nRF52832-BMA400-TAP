@@ -68,11 +68,47 @@ void setIntConfig0()
 		writeBMA400(&config[0], sizeof(config));
 }
 
+void setIntConfig1()
+{
+		uint8_t config[2];
+		config[0] = BMA400_IntConfig1_ADDR;
+		config[1] = (0x0C);
+
+		writeBMA400(&config[0], sizeof(config));
+}
+
 void setInt1Map()
 {
 		uint8_t config[2];
 		config[0] = BMA400_Int1Map_ADDR;
 		config[1] = (0x80);
+
+		writeBMA400(&config[0], sizeof(config));
+}
+
+void setInt12Map()
+{
+		uint8_t config[2];
+		config[0] = BMA400_Int12Map_ADDR;
+		config[1] = (0x40);
+
+		writeBMA400(&config[0], sizeof(config));
+}
+
+void setTapConfig0()
+{
+		uint8_t config[2];
+		config[0] = BMA400_TAPConfig0_ADDR;
+		config[1] = (0x00);
+
+		writeBMA400(&config[0], sizeof(config));
+}
+
+void setTapConfig1()
+{
+		uint8_t config[2];
+		config[0] = BMA400_TAPConfig1_ADDR;
+		config[1] = (0x00);
 
 		writeBMA400(&config[0], sizeof(config));
 }
@@ -153,6 +189,22 @@ void initBMA400()
 		printerConectCheckBMA400();
 }
 
+void initBMA400Tap()
+{
+    setSoftResetBMA400();
+    nrf_delay_ms(2);
+		setIntConfig1();
+    nrf_delay_us(200);
+		setInt12Map();
+    nrf_delay_us(200);
+		setTapConfig0();
+    nrf_delay_us(200);
+		setTapConfig1();
+    nrf_delay_us(200);
+		
+		printerConectCheckBMA400();
+}
+
 void BMA400()
 {
     readAccXYZ();
@@ -160,5 +212,6 @@ void BMA400()
 		
 		NRF_LOG_INFO("X:%d Y:%d Z:%d", accX, accY, accZ);
     NRF_LOG_FLUSH();
-//    saveBMA400(accX accY, accZ);
+		
+//    saveBMA400(accX, accY, accZ);
 }

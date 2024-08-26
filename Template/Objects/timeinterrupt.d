@@ -89,3 +89,6 @@
 .\objects\timeinterrupt.o: ..\nRF5_SDK\modules\nrfx\drivers\include\nrfx_spi.h
 .\objects\timeinterrupt.o: ..\nRF5_SDK\modules\nrfx\hal/nrf_spi.h
 .\objects\timeinterrupt.o: ..\nRF5_SDK\components\libraries\uart\app_uart.h
+.\objects\timeinterrupt.o: Project\api\../protocol/protocol.h
+.\objects\timeinterrupt.o: Project\api\../protocol/printer45byte/printer45byte.h
+.\objects\timeinterrupt.o: Project\api\../sys/headerfile.h

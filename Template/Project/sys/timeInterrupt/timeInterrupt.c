@@ -11,19 +11,12 @@ static uint16_t counter50Hz = 0;
 
 void handlerTimer1(nrf_timer_event_t event_type, void* p_context)
 {
-/* Timer 250Hz */
-
-/* Timer 50Hz */
-		counter50Hz++;
-		if(counter50Hz >= 5)
-		{	
-				counter50Hz = 0;
-		}
+		enable45byteLabViewPrinter();
 }
 
 void initTimerInterrupt()
 {
-    uint32_t time_ms = 4; 																														// Time Setting
+    uint32_t time_ms = 20; 																														// Time Setting
     uint32_t time_ticks;
     uint32_t err_code = NRF_SUCCESS;
 

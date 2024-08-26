@@ -61,6 +61,7 @@
 ".\objects\port.o"
 ".\objects\timeinterrupt.o"
 ".\objects\pinchangeinterrupt.o"
+".\objects\printer45byte.o"
 ".\objects\arm_startup_nrf52.o"
 ".\objects\system_nrf52.o"
 --strict --scatter ".\Objects\nRF52832_Template.sct"

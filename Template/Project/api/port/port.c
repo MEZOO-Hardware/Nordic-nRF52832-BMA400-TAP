@@ -53,6 +53,10 @@ void initComoPort()
 {
     initPortOutSet(17); 	// LED1
     initPortOutSet(18); 	// LED2
+		initPortIn2(12);			// BMA400_INT1
+		initPortIn2(13);			// BMA400_INT2
+		
+		initPortOutSet(25); 	// LED1
 }
 
 void initPowerHold()

@@ -779,6 +779,16 @@
               <FileType>5</FileType>
               <FilePath>.\Project\protocol\protocol.h</FilePath>
             </File>
+            <File>
+              <FileName>printer45byte.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Project\protocol\printer45byte\printer45byte.c</FilePath>
+            </File>
+            <File>
+              <FileName>printer45byte.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Project\protocol\printer45byte\printer45byte.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

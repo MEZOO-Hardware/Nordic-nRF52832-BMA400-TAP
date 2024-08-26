@@ -30,6 +30,7 @@ void initPeripherals()
 
 void initSensors()
 {
+//		initBMA400Tap();
 		initBMA400();
     NRF_LOG_INFO("initSensors Completed");
     NRF_LOG_FLUSH();
@@ -41,15 +42,21 @@ int main()
 		initPeripherals();
 		initSensors();
 		handerLowPowerConsumption();
-		initTimerInterrupt();
+//		initTimerInterrupt();
   
     while (true)
     {
-        for (int i = 0; i < 2; i++)
-        {
-            bsp_board_led_invert(i);
-            nrf_delay_ms(100);
-        }
-				
+//        for (int i = 0; i < 2; i++)
+//        {
+//            bsp_board_led_invert(i);
+//            nrf_delay_ms(100);
+//        }
+
+				if(isBMA400ReadyPin50Hz())
+				{
+					BMA400();
+					nrf_gpio_pin_toggle(25);
+					disableBMA400ReadyPin50Hz();
+				}
     } // while
 } // main

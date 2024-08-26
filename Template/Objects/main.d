@@ -90,6 +90,9 @@
 .\objects\main.o: ..\nRF5_SDK\modules\nrfx\drivers\include\nrfx_spi.h
 .\objects\main.o: ..\nRF5_SDK\modules\nrfx\hal/nrf_spi.h
 .\objects\main.o: ..\nRF5_SDK\components\libraries\uart\app_uart.h
+.\objects\main.o: Project\api\../protocol/protocol.h
+.\objects\main.o: Project\api\../protocol/printer45byte/printer45byte.h
+.\objects\main.o: Project\api\../sys/headerfile.h
 .\objects\main.o: Project\api\../api/api.h
 .\objects\main.o: Project\api\../api/i2c/i2c.h
 .\objects\main.o: Project\api\../sys/headerfile.h
@@ -117,8 +120,13 @@
 .\objects\main.o: Project/sys/sys.h
 .\objects\main.o: Project/sys/timeInterrupt\timeInterrupt.h
 .\objects\main.o: Project\api\../sys/headerfile.h
+.\objects\main.o: Project\api\../protocol/protocol.h
+.\objects\main.o: Project\api\../protocol/printer45byte/printer45byte.h
+.\objects\main.o: Project\api\../sys/headerfile.h
 .\objects\main.o: Project/sys/pinChangeInterrupt\pinChangeInterrupt.h
 .\objects\main.o: Project\api\../sys/headerfile.h
 .\objects\main.o: Project/sys/headerfile.h
 .\objects\main.o: Project/protocol/protocol.h
+.\objects\main.o: Project/protocol/printer45byte/printer45byte.h
+.\objects\main.o: Project\api\../sys/headerfile.h
 .\objects\main.o: Project/filter/filter.h

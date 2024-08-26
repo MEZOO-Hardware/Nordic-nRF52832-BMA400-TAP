@@ -3,6 +3,7 @@
 //
 
 #include "../sys/headerfile.h"
+#include "../protocol/protocol.h"
 #include "../api/api.h"
 
 enum BMA400_Register
@@ -44,8 +45,14 @@ enum BMA400_Register
 		BMA400_FIFOConfig0_ADDR 	=	0x26,
 		BMA400_FIFOConfig1_ADDR 	= 0x27,
 		BMA400_FIFOConfig2_ADDR 	= 0x28,
+		BMA400_TAPConfig0_ADDR	 	= 0x57,
+		BMA400_TAPConfig1_ADDR 		= 0x58,
     BMA400_CommandReg_ADDR 		= 0x7E
 };
 
+#define BMA400_ASSERTED_S_TAP_INT                 UINT16_C(0x0400)
+#define BMA400_ASSERTED_D_TAP_INT                 UINT16_C(0x0800)
+
 void initBMA400();
+void initBMA400Tap();
 void BMA400();
