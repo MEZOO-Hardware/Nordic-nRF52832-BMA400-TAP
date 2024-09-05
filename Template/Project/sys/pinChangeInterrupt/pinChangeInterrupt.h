@@ -24,3 +24,7 @@ void initPinChangeInterrupt();
 void enableBMA400ReadyPin50Hz();
 void disableBMA400ReadyPin50Hz();
 bool isBMA400ReadyPin50Hz();
+
+void enableBMA400Tap();
+void disableBMA400Tap();
+bool isBMA400Tap();

@@ -50,9 +50,10 @@ enum BMA400_Register
     BMA400_CommandReg_ADDR 		= 0x7E
 };
 
-#define BMA400_ASSERTED_S_TAP_INT                 UINT16_C(0x0400)
-#define BMA400_ASSERTED_D_TAP_INT                 UINT16_C(0x0800)
+#define BMA400_ASSERTED_S_TAP_INT  0x04
+#define BMA400_ASSERTED_D_TAP_INT  0x08
 
 void initBMA400();
 void initBMA400Tap();
 void BMA400();
+void BMA400Tap();

@@ -685,16 +685,6 @@
               <FilePath>.\Project\app\app.h</FilePath>
             </File>
             <File>
-              <FileName>bma400Tap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Project\app\bma400Tap\bma400Tap.c</FilePath>
-            </File>
-            <File>
-              <FileName>bma400Tap.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Project\app\bma400Tap\bma400Tap.h</FilePath>
-            </File>
-            <File>
               <FileName>bma400.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Project\app\bma400\bma400.c</FilePath>

@@ -51,7 +51,6 @@
 ".\objects\segger_rtt.o"
 ".\objects\segger_rtt_syscalls_keil.o"
 ".\objects\segger_rtt_printf.o"
-".\objects\bma400tap.o"
 ".\objects\bma400.o"
 ".\objects\i2c.o"
 ".\objects\spi.o"

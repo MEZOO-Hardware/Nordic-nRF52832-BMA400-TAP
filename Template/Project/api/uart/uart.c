@@ -4,14 +4,14 @@
 
 #include "uart.h"
 
-#if defined (UART_PRESENT)
+#if defined(UART_PRESENT)
 #include "nrf_uart.h"
 #endif
-#if defined (UARTE_PRESENT)
+#if defined(UARTE_PRESENT)
 #include "nrf_uarte.h"
 #endif
 
-void uart_error_handle(app_uart_evt_t * p_event)
+void uart_error_handle(app_uart_evt_t *p_event)
 {
     if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
     {
@@ -45,14 +45,15 @@ static void show_error(void)
  */
 static void uart_loopback_test()
 {
-    uint8_t * tx_data = (uint8_t *)("\r\nLOOPBACK_TEST\r\n");
-    uint8_t   rx_data;
+    uint8_t *tx_data = (uint8_t *)("\r\nLOOPBACK_TEST\r\n");
+    uint8_t rx_data;
 
     // Start sending one byte and see if you get the same
     for (uint32_t i = 0; i < MAX_TEST_DATA_BYTES; i++)
     {
         uint32_t err_code;
-        while (app_uart_put(tx_data[i]) != NRF_SUCCESS);
+        while (app_uart_put(tx_data[i]) != NRF_SUCCESS)
+            ;
 
         nrf_delay_ms(10);
         err_code = app_uart_get(&rx_data);
@@ -70,40 +71,40 @@ static void uart_loopback_test()
 #endif
 
 /* TWI instance. */
-//nrfx_uart_t uart_m = NRFX_UART_INSTANCE(0);
-//nrfx_uart_config_t uart_config = NRFX_UART_DEFAULT_CONFIG(6, 8);
+// nrfx_uart_t uart_m = NRFX_UART_INSTANCE(0);
+// nrfx_uart_config_t uart_config = NRFX_UART_DEFAULT_CONFIG(6, 8);
 
 void initUART()
 {
-	uint32_t err_code;
-	    const app_uart_comm_params_t comm_params =
-      {
-          8,	// nRF52_DK Board pin
-          6,	// nRF52_DK Board pin
-          0,
-          0,
-          UART_HWFC,
-          false,
-#if defined (UART_PRESENT)
-          NRF_UART_BAUDRATE_115200
+    uint32_t err_code;
+    const app_uart_comm_params_t comm_params =
+        {
+            8, // nRF52_DK Board pin
+            6, // nRF52_DK Board pin
+            0,
+            0,
+            UART_HWFC,
+            false,
+#if defined(UART_PRESENT)
+            NRF_UART_BAUDRATE_115200
 #else
-          NRF_UARTE_BAUDRATE_115200
+            NRF_UARTE_BAUDRATE_115200
 #endif
-      };
-			
-			    APP_UART_FIFO_INIT(&comm_params,
-                         UART_RX_BUF_SIZE,
-                         UART_TX_BUF_SIZE,
-                         uart_error_handle,
-                         APP_IRQ_PRIORITY_LOWEST,
-                         err_code);
+        };
+
+    APP_UART_FIFO_INIT(&comm_params,
+                       UART_RX_BUF_SIZE,
+                       UART_TX_BUF_SIZE,
+                       uart_error_handle,
+                       APP_IRQ_PRIORITY_LOWEST,
+                       err_code);
 
     APP_ERROR_CHECK(err_code);
 
 #ifndef ENABLE_LOOPBACK_TEST
-			/* UART TEST, q or Q push, Exit */
-/*    
-		printf("\rUART Initialized\r\n");
+    /* UART TEST, q or Q push, Exit */
+/*
+        printf("\rUART Initialized\r\n");
 
     while (true)
     {
@@ -117,7 +118,7 @@ void initUART()
 
             while (true)
             {
-             
+
             }
         }
     }
@@ -130,8 +131,8 @@ void initUART()
         uart_loopback_test();
     }
 #endif
-			
-//    nrfx_uart_init(&uart_m, &uart_config, NULL);
-//    nrfx_uart_rx_enable(&uart_m);
-//    app_uart_init(8, 6, 0, 0);
+
+    //    nrfx_uart_init(&uart_m, &uart_config, NULL);
+    //    nrfx_uart_rx_enable(&uart_m);
+    //    app_uart_init(8, 6, 0, 0);
 }
