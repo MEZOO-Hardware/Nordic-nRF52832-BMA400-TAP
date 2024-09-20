@@ -21,9 +21,9 @@
 #define P11					ARDUINO_0_PIN               
 
 void initPinChangeInterrupt();
-void enableBMA400ReadyPin50Hz();
-void disableBMA400ReadyPin50Hz();
-bool isBMA400ReadyPin50Hz();
+void enableBMA400ReadyPin200Hz();
+void disableBMA400ReadyPin200Hz();
+bool isBMA400ReadyPin200Hz();
 
 void enableBMA400Tap();
 void disableBMA400Tap();

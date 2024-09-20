@@ -3,7 +3,9 @@
 //
 
 #include "../sys/headerfile.h"
+#include "../sys/pinChangeInterrupt/pinChangeInterrupt.h"
 #include "../protocol/protocol.h"
+
 
 void handlerTimer1(nrf_timer_event_t event_type, void* p_context);
 void initTimerInterrupt();

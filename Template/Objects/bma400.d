@@ -89,6 +89,16 @@
 .\objects\bma400.o: ..\nRF5_SDK\modules\nrfx\drivers\include\nrfx_spi.h
 .\objects\bma400.o: ..\nRF5_SDK\modules\nrfx\hal/nrf_spi.h
 .\objects\bma400.o: ..\nRF5_SDK\components\libraries\uart\app_uart.h
+.\objects\bma400.o: Project\api\../sys/sys.h
+.\objects\bma400.o: Project\api\../sys/timeInterrupt\timeInterrupt.h
+.\objects\bma400.o: Project\api\../sys/headerfile.h
+.\objects\bma400.o: Project\api\../sys/pinChangeInterrupt/pinChangeInterrupt.h
+.\objects\bma400.o: Project\api\../sys/headerfile.h
+.\objects\bma400.o: Project\api\../protocol/protocol.h
+.\objects\bma400.o: Project\api\../protocol/printer45byte/printer45byte.h
+.\objects\bma400.o: Project\api\../sys/headerfile.h
+.\objects\bma400.o: Project\api\../sys/pinChangeInterrupt\pinChangeInterrupt.h
+.\objects\bma400.o: Project\api\../sys/headerfile.h
 .\objects\bma400.o: Project\api\../protocol/protocol.h
 .\objects\bma400.o: Project\api\../protocol/printer45byte/printer45byte.h
 .\objects\bma400.o: Project\api\../sys/headerfile.h

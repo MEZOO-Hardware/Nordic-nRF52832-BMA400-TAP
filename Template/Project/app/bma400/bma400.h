@@ -3,6 +3,7 @@
 //
 
 #include "../sys/headerfile.h"
+#include "../sys/sys.h"
 #include "../protocol/protocol.h"
 #include "../api/api.h"
 
@@ -57,3 +58,5 @@ void initBMA400();
 void initBMA400Tap();
 void BMA400();
 void BMA400Tap();
+void readTapDetection();
+void initBMA400Timer();

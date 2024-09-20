@@ -14,12 +14,12 @@ void handerLowPowerConsumption()
 
 void initPeripherals()
 {
-	initNRF52Port();
+	// initNRF52Port();
 	initComoPort();
 	initUART();
 	initSeggerRTT();
 	initI2C();
-	initSPI();
+	// initSPI();
 	initADC();
 	initPinChangeInterrupt();
 
@@ -42,26 +42,23 @@ int main()
 	initPeripherals();
 	initSensors();
 	handerLowPowerConsumption();
-	// initTimerInterrupt();
+//	initTimerInterrupt();
+	initBMA400Timer();
 
 	while (true)
 	{
-		// if(isBMA400ReadyPin50Hz())
-		// {
-		// 	BMA400();
-		// 	nrf_gpio_pin_toggle(25);
-		// 	disableBMA400ReadyPin50Hz();
-		// }
+		if(isBMA400ReadyPin200Hz())
+		{
+			BMA400();
+			nrf_gpio_pin_toggle(25);
+			disableBMA400ReadyPin200Hz();
+		}
 
 		if (isBMA400Tap())
 		{
-			NRF_LOG_INFO("BMA400 Tap");
-			NRF_LOG_FLUSH();
-			// BMA400Tap();
+			BMA400Tap();
 			disableBMA400Tap();
 		}
-
-		BMA400Tap();
 
 	} // while
 } // main

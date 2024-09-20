@@ -7,16 +7,17 @@
 /* Timer instance. */
 const nrf_drv_timer_t timerSelect1 = NRF_DRV_TIMER_INSTANCE(1);
 
-static uint16_t counter50Hz = 0;
-
+static uint16_t cnt = 0;
 void handlerTimer1(nrf_timer_event_t event_type, void *p_context)
 {
-    enable45byteLabViewPrinter();
+    // enable45byteLabViewPrinter();
+		NRF_LOG_INFO("Timer event occurred");
+		NRF_LOG_FLUSH();
 }
 
 void initTimerInterrupt()
 {
-    uint32_t time_ms = 20; // Time Setting
+    uint32_t time_ms = 100; // Time Setting
     uint32_t time_ticks;
     uint32_t err_code = NRF_SUCCESS;
 
